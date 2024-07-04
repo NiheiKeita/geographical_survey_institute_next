@@ -6,7 +6,7 @@ type Location = {
     lon: number,
     lat: number
 }
-
+//位置情報を取得する
 export const useCurrentLocation = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [location, setLocation] = useState<Location>()
