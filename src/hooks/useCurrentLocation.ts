@@ -9,18 +9,32 @@ type Location = {
 //位置情報を取得する
 export const useCurrentLocation = () => {
     const [isLoading, setIsLoading] = useState(false)
+    const [errorMessage, setErrorMessage] = useState<string>()
     const [location, setLocation] = useState<Location>()
 
-    const getCurrentLocation = useCallback(async (a: number) => {
+    const getCurrentLocation = useCallback(async () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    const { latitude, longitude } = position.coords;
+                    setLocation({ lat: latitude, lon: longitude });
+                },
+                error => {
+                    setErrorMessage(error.message)
+                }
+            );
+        } else {
+            setErrorMessage('Geolocation is not supported by this browser.')
+        }
         setIsLoading(true)
-        sleep(1);
-        setIsLoading(false)
-        setLocation({
-            lon: 135 + a,
-            lat: 35
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            console.log(latitude)
+            console.log(longitude)
+            setLocation({ lon: longitude, lat: latitude });
         })
+        setIsLoading(false)
     }, [])
 
-    return { isLoading, getCurrentLocation, location }
+    return { isLoading, errorMessage, getCurrentLocation, location }
 }
-const sleep = (time: number) => new Promise((resolve) => setTimeout(resolve, time)); 

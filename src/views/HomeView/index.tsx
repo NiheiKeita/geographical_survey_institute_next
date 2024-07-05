@@ -8,21 +8,22 @@ import React, { useEffect } from "react"
 export const HomeView = React.memo(function HomeView() {
   const user = {
     name: "山田太郎",
-    nextCheckpointElevation: "2000m",
+    nextCheckpointElevation: "2000",
     currentElevation: "1500m",
     totalPoints: 350
   };
   const { isLoading, getElevation, response } = useGetElevation()
-  const { getCurrentLocation, location } = useCurrentLocation()
+  const { getCurrentLocation, errorMessage, location } = useCurrentLocation()
   useEffect(() => {
     if (!location?.lon || !location?.lat) return
     getElevation(location.lon, location.lat)
   }, [getElevation, location?.lat, location?.lon])
   const handleMeasureElevation = () => {
-    getCurrentLocation(1)
+    console.log("dd")
+    getCurrentLocation()
   }
   useEffect(() => {
-    getCurrentLocation(0)
+    getCurrentLocation()
   }, [])
 
   return (
@@ -41,12 +42,12 @@ export const HomeView = React.memo(function HomeView() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div className="rounded-lg bg-blue-100 p-6 text-center shadow-inner">
             <h2 className="text-xl font-bold text-blue-800">次のチェックポイントの標高</h2>
-            <p className="mt-2 text-3xl text-blue-900">{user.nextCheckpointElevation}</p>
+            <p className="mt-2 text-3xl text-blue-900">{user.nextCheckpointElevation}m</p>
           </div>
           <div className="rounded-lg bg-green-100 p-6 text-center shadow-inner">
             <h2 className="text-xl font-bold text-green-800">現在の標高</h2>
             {isLoading && <div className="mt-4 flex justify-center align-middle"><LoadingIcon /></div>}
-            {!isLoading && <p className="mt-2 text-3xl text-green-900">{response?.elevation}</p>}
+            {!isLoading && <p className="mt-2 text-3xl text-green-900">{response?.elevation}m</p>}
           </div>
         </div>
         <div className="mt-8">
@@ -55,11 +56,14 @@ export const HomeView = React.memo(function HomeView() {
         </div>
         <div className="mt-8 flex justify-center">
           <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
             onClick={handleMeasureElevation}
           >
             標高を測る
           </button>
+        </div>
+        <div>
+          {errorMessage}
         </div>
       </div>
     </div>
