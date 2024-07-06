@@ -16,22 +16,22 @@ export const useCurrentLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 position => {
-                    const { latitude, longitude } = position.coords;
-                    setLocation({ lat: latitude, lon: longitude });
+                    const { latitude, longitude } = position.coords
+                    setLocation({ lat: latitude, lon: longitude })
                 },
                 error => {
                     setErrorMessage(error.message)
                 }
-            );
+            )
         } else {
             setErrorMessage('Geolocation is not supported by this browser.')
         }
         setIsLoading(true)
         navigator.geolocation.getCurrentPosition(position => {
-            const { latitude, longitude } = position.coords;
+            const { latitude, longitude } = position.coords
             console.log(latitude)
             console.log(longitude)
-            setLocation({ lon: longitude, lat: latitude });
+            setLocation({ lon: longitude, lat: latitude })
         })
         setIsLoading(false)
     }, [])

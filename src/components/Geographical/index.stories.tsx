@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { Geographical } from '.';
+import { Meta, StoryObj } from '@storybook/react'
+import { Geographical } from '.'
 
 
 const meta: Meta<typeof Geographical> = {

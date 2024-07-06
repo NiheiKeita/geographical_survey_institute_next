@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { NoImage } from '.';
+import { Meta, StoryObj } from '@storybook/react'
+import { NoImage } from '.'
 
 
 const meta: Meta<typeof NoImage> = {

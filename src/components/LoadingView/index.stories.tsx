@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { LoadingView } from '.';
+import { Meta, StoryObj } from '@storybook/react'
+import { LoadingView } from '.'
 
 
 const meta: Meta<typeof LoadingView> = {

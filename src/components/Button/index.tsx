@@ -13,9 +13,9 @@ export const Button = React.memo<Props>(function Button({
   const color = (() => {
     switch (variant) {
       case 'default':
-        return 'bg-white text-pink-500';
+        return 'bg-white text-pink-500'
       case 'pink':
-        return 'bg-pink-500 text-white';
+        return 'bg-pink-500 text-white'
     }
   })()
 

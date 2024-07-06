@@ -1,8 +1,8 @@
 "use client"
 
-import { useGetElevation } from "@/api/useGetElevation";
-import { LoadingIcon } from "@/components/LoadingIcon";
-import { NoImage } from "@/components/NoImage";
+import { useGetElevation } from "@/api/useGetElevation"
+import { LoadingIcon } from "@/components/LoadingIcon"
+import { NoImage } from "@/components/NoImage"
 import { useCurrentLocation } from "@/hooks/useCurrentLocation"
 import React, { useEffect } from "react"
 
@@ -12,7 +12,7 @@ export const HomeView = React.memo(function HomeView() {
     nextCheckpointElevation: "2000",
     currentElevation: "1500m",
     totalPoints: 350
-  };
+  }
   const { isLoading, getElevation, response } = useGetElevation()
   const { getCurrentLocation, errorMessage, location } = useCurrentLocation()
   useEffect(() => {
@@ -67,5 +67,5 @@ export const HomeView = React.memo(function HomeView() {
         </div>
       </div>
     </div>
-  );
+  )
 })
