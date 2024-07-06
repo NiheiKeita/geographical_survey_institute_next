@@ -1,31 +1,18 @@
 "use client"
 
-import { useGetElevation } from "@/api/useGetElevation"
 import { LoadingIcon } from "@/components/LoadingIcon"
 import { NoImage } from "@/components/NoImage"
-import { useCurrentLocation } from "@/hooks/useCurrentLocation"
-import React, { useEffect } from "react"
+import React from "react"
+import { useHomeView } from "./hooks"
 
 export const HomeView = React.memo(function HomeView() {
-  const user = {
-    name: "山田太郎",
-    nextCheckpointElevation: "2000",
-    currentElevation: "1500m",
-    totalPoints: 350
-  }
-  const { isLoading, getElevation, response } = useGetElevation()
-  const { getCurrentLocation, errorMessage, location } = useCurrentLocation()
-  useEffect(() => {
-    if (!location?.lon || !location?.lat) return
-    getElevation(location.lon, location.lat)
-  }, [getElevation, location?.lat, location?.lon])
-  const handleMeasureElevation = () => {
-    console.log("dd")
-    getCurrentLocation()
-  }
-  useEffect(() => {
-    getCurrentLocation()
-  }, [])
+  const {
+    user,
+    isLoading,
+    handleMeasureElevation,
+    response,
+    errorMessage
+  } = useHomeView()
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-200 py-12">
