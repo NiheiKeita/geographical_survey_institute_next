@@ -31,7 +31,7 @@ export const HomeView = React.memo(function HomeView() {
     <div className="flex min-h-screen items-center justify-center bg-gray-200 py-12">
       <div className="w-full max-w-4xl rounded-lg bg-white p-6 shadow-lg">
         <div className="mb-8 flex items-center space-x-6">
-          <div className="size-24 rounded-full shadow-md">
+          <div className=" size-24 rounded-full shadow-md">
             <NoImage />
           </div>
           <div>
