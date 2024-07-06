@@ -3,6 +3,7 @@ import { useGetUser } from "@/api/useGetUser"
 import { useCurrentLocation } from "@/hooks/useCurrentLocation"
 import { User } from "@/types/User"
 import { useCallback, useEffect, useState } from "react"
+import { useEffectOnce } from "react-use"
 
 export const useHomeView = () => {
     const [user, setUser] = useState<User>()
@@ -12,7 +13,6 @@ export const useHomeView = () => {
     useEffect(() => {
         setUser(userResponse)
     }, [userResponse])
-
     useEffect(() => {
         if (!location?.lon || !location?.lat) return
         getElevation(location.lon, location.lat)
@@ -20,10 +20,10 @@ export const useHomeView = () => {
     const handleMeasureElevation = useCallback(() => {
         getCurrentLocation()
     }, [getCurrentLocation])
-    useEffect(() => {
+    useEffectOnce(() => {
         getUser(1)
         getCurrentLocation()
-    }, [])
+    })
 
     return {
         user,
