@@ -2,7 +2,8 @@
 
 import { useGetElevation } from "@/api/useGetElevation";
 import { LoadingIcon } from "@/components/LoadingIcon";
-import { useCurrentLocation } from "@/hooks/useCurrentLocation";
+import { NoImage } from "@/components/NoImage";
+import { useCurrentLocation } from "@/hooks/useCurrentLocation"
 import React, { useEffect } from "react"
 
 export const HomeView = React.memo(function HomeView() {
@@ -30,10 +31,9 @@ export const HomeView = React.memo(function HomeView() {
     <div className="flex min-h-screen items-center justify-center bg-gray-200 py-12">
       <div className="w-full max-w-4xl rounded-lg bg-white p-6 shadow-lg">
         <div className="mb-8 flex items-center space-x-6">
-          <img
-            className="size-24 rounded-full shadow-md"
-            src="https://via.placeholder.com/150"
-            alt="User Avatar" />
+          <div className="size-24 rounded-full shadow-md">
+            <NoImage />
+          </div>
           <div>
             <h1 className="text-3xl font-bold text-gray-800">{user.name}</h1>
             <p className="text-gray-600">プロフィールページ</p>
